@@ -1,4 +1,6 @@
 const { config } = require("vuepress-theme-hope");
+const navBarConfig = require("./config/navbar");
+const sideBarConfig = require("./config/sidebar");
 
 module.exports = config({
   title: "My Blog",
@@ -37,92 +39,9 @@ module.exports = config({
     author: "Leonhardt",
     repo: "https://github.com/kigane/HopeBlog",
     // 导航栏
-    nav: [
-      { text: 'Home', link: '/', icon: "home" },
-      { text: "Project Home", link: "/home/", icon: "home" },
-      { text: 'Guide', link: '/guide/', icon: "creative", },
-      { text: 'Blog', link: '/blog/', icon: "blog" },
-      {
-        text: 'Note', icon: "note", prefix: "/note/",
-        items: [
-          { text: 'Algorithm', link: 'algorithm/' },
-          { text: 'Computer Science', link: 'cs/' },
-          { text: 'Computer Vision', link: 'cv/' },
-          { text: 'C/C++', link: 'cpp/' },
-          { text: 'OpenGL', link: 'opengl/' },
-          { text: 'JavaScript', link: 'js/' },
-        ]
-      },
-      { text: 'Hazel', link: '/hazel/' },
-    ],
+    nav: navBarConfig,
     // 侧边栏
-    // displayAllHeaders: true, // Default: false
-    sidebar: {
-      '/guide/': [
-        '',
-        'configuration',
-        "page",
-        "markdown",
-        "disable",
-        "encrypt",
-      ],
-      '/blog/': [
-        '',
-        'katex-cheatsheet',
-        'game-engine-overview',
-        'python',
-      ],
-      '/note/cs/': [
-        '',
-        'isa-i386',
-        'isa-riscv',
-        'gdb-cheatsheet',
-        'shell-cheatsheet',
-        'vim',
-        'git',
-        'regex',
-        'linux',
-        'ECF',
-        'VM',
-      ],
-      '/note/cpp/': [
-        '',
-        'c',
-        'cpp-random',
-        'file-io',
-        'macro',
-      ],
-      '/note/algorithm/': [
-        '',
-      ],
-      '/note/cv/': [
-        '',
-      ],
-      '/note/opengl/': [
-        '',
-        'gl-framebuffer',
-        'software-renderer',
-        'eigen',
-        'opencv',
-      ],
-      '/hazel/': [
-        '',
-      ],
-      '/note/js/': [
-        '',
-        'js-base',
-        'js-object',
-        'js-bom-dom',
-        'vue',
-        'css-basic',
-        'css-layout',
-        'css-modular',
-        'css-advance',
-        'css-sass',
-        'css-tricks',
-      ],
-      '/': [''],
-    },
+    sidebar: sideBarConfig,
     editLinks:false, // 编辑此页链接
     blog: {
       intro: "/intro/",
