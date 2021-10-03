@@ -1,0 +1,8 @@
+dist
+kigane.github.io
+node_modules
+**/*.exe
+**/*.cpp
+**/*.c
+**/*.py
+src/note/js/demo.html
