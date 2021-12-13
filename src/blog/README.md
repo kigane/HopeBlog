@@ -26,3 +26,7 @@ sidebarDepth: 2
 > 形而上者谓之道，形而下者谓之器，能舍器而直接近道者，几稀！
 
 > 比较的关键不在于相似特征的多少，而在于特征是不是揭示了事物的本质
+
+> Experience is what you get when you didn't get what you wanted.
+
+> "luck" is where preparation meets opportunity.

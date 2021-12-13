@@ -1,10 +1,10 @@
 ---
 home: true
 icon: home
-title: Project home
+title: 这主题废弃了标题？
 heroImage: /logo.svg
-heroText: Project name
-tagline: You can place the description of the project here.
+heroText: 小目标
+tagline: luck is where preparation meets opportunity.
 action:
   - text: How to Use 💡
     link: /guide/
@@ -14,60 +14,26 @@ action:
     link: /
 
 features:
-  - title: Markdown Enhance 🧰
-    details: Add align, sup/sub script, footnote, tasklist, tex, flowchart, diagram, mark and presentation support in Markdown
+  - title: 玩玩MS COCO数据集
+    details: 图片展示，数据组织方式，Dataset应该如何处理？
     link: https://vuepress-theme-hope.github.io/guide/markdown/
 
-  - title: Pageviews and comments 💬
-    details: Start pageview statistics and comment support with Valine and Vssue
-    link: https://vuepress-theme-hope.github.io/guide/feature/comment/
+  - title: 读论文
+    details: 读得多了，不会写也能编。
+    link: /thesis/
 
-  - title: Article information display ℹ
-    details: Add author, writing date, reading time, word count and other information to your article
+  - title: 作业
+    details: 高级人工智能论文，数字图像处理论文，深度学习论文。RNN，RL实验。软件工程大作业。
     link: https://vuepress-theme-hope.github.io/guide/feature/page-info/
-
-  - title: Blog support 📝
-    details: Add date, tags and category to your articles, then article, tag, category and timeline list will be auto generated
-    link: https://vuepress-theme-hope.github.io/guide/blog/intro/
-
-  - title: Article Encryption 🔐
-    details: Encrypt you article based on path and folders, so that only the one you want could see them
-    link: https://vuepress-theme-hope.github.io/guide/feature/encrypt/
-
-  - title: Custom theme color 🎨
-    details: Supports custom theme colors and allows users to switch between preset theme colors
-    link: https://vuepress-theme-hope.github.io/guide/interface/theme-color/
-
-  - title: Dark Mode 🌙
-    details: Switch between light and dark modes freely
-    link: https://vuepress-theme-hope.github.io/guide/interface/darkmode/
-
-  - title: SEO enhancement ⚒
-    details: Optimize pages for search engines.
-    link: https://vuepress-theme-hope.github.io/guide/feature/seo/
-
-  - title: Sitemap 🗺
-    details: Generate a Sitemap for your website
-    link: https://vuepress-theme-hope.github.io/guide/feature/sitemap/
-
-  - title: Feed support 📡
-    details: You can generate feed, and let users to subcribe it
-    link: https://vuepress-theme-hope.github.io/guide/feature/feed/
-
-  - title: PWA support 📲
-    details: The built-in PWA plugin will make your website more like an APP.
-    link: https://vuepress-theme-hope.github.io/guide/feature/pwa/
-
-  - title: TS support 🔧
-    details: Turn on TypeScript support for your VuePress
-    link: https://vuepress-theme-hope.github.io/guide/feature/typescript/
-
-  - title: More new features ✨
-    details: Including icon support, path navigation, footer support, fullscreen button, blog homepage, etc.
-    link: https://vuepress-theme-hope.github.io/guide/feature/
+  
+  - title: PyQt5 GUI程序
+    details: 提高编程能力。
+  
+  - title: LeetCode
+    details: 练练手，复习基本算法
 
 copyrightText: false
-footer: MIT Licensed | Copyright © 2019-present Mr. Hope
+footer: MIT Licensed | Copyright © 2019-present Mr. H
 ---
 
 This is an example of a normal homepage. You can place your main content here.

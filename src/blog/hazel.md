@@ -1,7 +1,9 @@
 ---
 title: Hazel
-lang: zh-CN
-sidebarDepth: 1
+category: C/C++
+tag: 
+  - Games
+time: 2021-12-13
 ---
 
 ## EventSystem
@@ -46,5 +48,3 @@ PS: 如果pch.h中的头文件有任何一个改动，整个pch.h都需要重新
 * LayerStack是Layer的wrapper(一个vector\<Layer\>)，主要用于设定渲染顺序，以及事件的传播顺序(和渲染顺序相反)，将不同Layer的渲染和事件处理隔离开。
 * OnUpdate() 在每一帧渲染时调用
 * OnEvent() 在反向传播事件
-
-## InputSystem

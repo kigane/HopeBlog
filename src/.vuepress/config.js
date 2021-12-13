@@ -3,7 +3,7 @@ const navBarConfig = require("./config/navbar");
 const sideBarConfig = require("./config/sidebar");
 
 module.exports = config({
-  title: "My Blog",
+  title: "Leonhardt's Blog",
   description: "想，都是问题。做，才是答案。",
 
   dest: "./dist",
@@ -43,6 +43,7 @@ module.exports = config({
     // 侧边栏
     sidebar: sideBarConfig,
     editLinks:false, // 编辑此页链接
+    contributor:false,
     blog: {
       intro: "/intro/",
       sidebarDisplay: "mobile",
@@ -77,6 +78,7 @@ module.exports = config({
       footnote: true, // 脚注
       tex: true,
       flowchart: true,
+      mermaid: true,
       demo: true,
       presentation: {
         plugins: [

@@ -5,4 +5,7 @@ module.exports = sidebarConfig([
     'katex-cheatsheet',
     'game-engine-overview',
     'python',
+    'random',
+    'numpy',
+    'hazel',
 ])

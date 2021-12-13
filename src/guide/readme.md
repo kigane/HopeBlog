@@ -2,6 +2,9 @@
 title: Hello Vuepress
 ---
 
+## 遇到的问题
+在根目录的readme中设置footer内容时使用双引号，会出现YAML Exception。项目无法正常编译。
+
 ## math
 安装 markdown-it-katex 插件
 ```shell

@@ -2,7 +2,7 @@ const { navbarConfig } = require("vuepress-theme-hope");
 
 module.exports = navbarConfig([
     { text: 'Home', link: '/', icon: "home" },
-    { text: "Project Home", link: "/home/", icon: "home" },
+    { text: "Target", link: "/home/", icon: "notice" },
     { text: 'Guide', link: '/guide/', icon: "creative", },
     { text: 'Blog', link: '/blog/', icon: "blog" },
     {
@@ -12,9 +12,10 @@ module.exports = navbarConfig([
             { text: 'Computer Science', link: 'cs/' },
             { text: 'Computer Vision', link: 'cv/' },
             { text: 'C/C++', link: 'cpp/' },
+            { text: 'DIP', link: 'dip/' },
             { text: 'OpenGL', link: 'opengl/' },
             { text: 'JavaScript', link: 'js/' },
         ]
     },
-    { text: 'Hazel', link: '/hazel/' },
+    { text: 'Thesis', link: '/thesis/', icon: "article" },
 ])

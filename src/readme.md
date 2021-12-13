@@ -4,7 +4,7 @@ home: true
 icon: home
 title: Blog Home
 heroImage: /logo.svg
-heroText: My Blog
+heroText: Leonhardt's Blog
 tagline: You can put your slogan here, but it's not work
 heroFullScreen: true
 project:
@@ -28,5 +28,5 @@ project:
     desc: Detailed description of the article
     link: https://link.to.your.article
 
-footer: 形而上者谓之道，形而下者谓之器，能舍器而直接近道者，几稀！
+footer: luck is where preparation meets opportunity.
 ---
