@@ -1,6 +1,6 @@
 ---
 title: numpy用法
-category: python
+category: Python
 tag:
   - numpy
 time: 2021-12-05

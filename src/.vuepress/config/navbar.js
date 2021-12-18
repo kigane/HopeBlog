@@ -12,7 +12,6 @@ module.exports = navbarConfig([
             { text: 'Computer Science', link: 'cs/' },
             { text: 'Computer Vision', link: 'cv/' },
             { text: 'C/C++', link: 'cpp/' },
-            { text: 'DIP', link: 'dip/' },
             { text: 'OpenGL', link: 'opengl/' },
             { text: 'JavaScript', link: 'js/' },
         ]

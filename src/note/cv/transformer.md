@@ -1,6 +1,6 @@
 ---
 title: Attention is all you need
-category: thesis
+category: Thesis
 time: 2021-11-14
 ---
 
@@ -27,3 +27,4 @@ time: 2021-11-14
 - 作者的创新在于在encoder-decoder架构中只使用self-attention机制。
 
 ## ==模型架构==
+TODO

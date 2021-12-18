@@ -1,54 +1,60 @@
 ---
 title: python
-category: python
+category: Python
 sidebarDepth: 1
 ---
 
-## 基础
-### 内置方法
+## 内置方法
 * `any(lst)`: lst中任意元素为True则返回True。即列表所有元素取or。
 * `all(lst)`: lst中所有元素为True才返回True。即列表所有元素取and。
 
-### import
-#### module
+## 枚举
+- from enum import Enum, IntEnum, Flag, IntFlag, unique, auto
+- Flag 可创建可与位运算符搭配使用，又不会失去 Flag 成员资格的枚举常量的基类。
+- @unique装饰器，可确保成员值唯一
+- auto() 如果值不重要，可用auto生成
+
+
+## import
+### module
 * dir(): 无参数，查看全局命名空间的变量
 * dir(module): 查看指定模块的变量
 * 一个.py文件可看作一个模块
     * import module (as alias) 引入module，可使用module命名空间及其内的变量
     * from module import var 将var从module中导入全局命名空间
 
-#### package
+### package
 * 一个目录，包含目录和子模块。
 * 创建一个package需要在目录下创建一个`__init__.py`
 * 需要在`__init__.py`中引入子模块，否则import package时空有命名空间，而无内容
 
-#### 模块查找顺序
+### 模块查找顺序
 * sys.module
 * python标准库
 * sys.path
 
-#### 相对导入
+### 相对导入
 * `.`，当前目录, `..`上一级目录, `...`上上一级目录。
 
-#### importlib 模块
+### importlib 模块
 * `import_module('module_name', package=__name__)` 返回值即模块
 * package用于考虑相对导入
 
-### 解包(自动)
+## 解包(自动)
 * 等号右边的序列可以直接解包为单个元素，只要在左边分配同样数量的变量。
 * 数量必须相同，否则会报错
 * 可以部分解包，即在等号左边某个变量前加`*`号，则其会接受所有为未分配的值，并形成一个数组。(序列元素数量必须多于分配的变量数)。例如 `a, *b, c = [1, 2, 3, 4, 5]`，则有`b=[2,3,4]`
 
-### 压缩(zip)
+## 压缩(zip)
 * `zip(range(3), reverse(range(5))) -> [(0, 4), (1, 3), (2, 2)]`
 * 创建字典时很有用: dict(zip(keys, values))
 
-### itertools.chain
+## itertools.chain
 * itertools.chain(range(3), range(4), range(5))
 * 作用是将三个生成器(range())合并成一个新的，生成`[0,1,2,0,1,2,3,0,1,2,3,4]`
 
-### 函数
-#### 参数
+## 函数
+### 参数
 * `def add(*args)`: 这里`*`作用是将所有剩下的未解析参数打包到一个元组中，赋给args。调用时可以用`*args`的到解包后的值。
 * `def init(**kwargs)`: 这里`**`作用是将所有剩下未解析的关键字参数打包成字典，赋给kwargs。
 * `def say(a, b, *, key=val...)`: 这里`*`是标识符，左边是位置参数，右边是关键字参数。
@@ -58,23 +64,23 @@ sidebarDepth: 1
     * `*args`
     * `**kwargs`
 
-#### 函数注解
+### 函数注解
 * python中对参数类型(参数后的冒号部分)和返回值类型(函数括号后，行尾冒号前的`->xx`部分)的描述方法
 * `def prepend_rows(row:list, prefix:str) -> list:`
 * 这些部分属于注解而非表达式，所以内容是无限制的。
 
-### lambda
+## lambda
 * `f = lambda x: x*x`
 * 语法: `lambda params:body`, `lambda: body`
 * body必须是返回一个值的单个表达式
 
-### 类
-#### 基础
+## 类
+### 基础
 * python类声明的主体是一个代码块，可以包含任何有效的python代码
 * 在类声明中声明的变量会成为类对象的一个属性(即，类会创建一个新的命名空间记录这些变量)
 * super(Class, instance, ...) 使用instance的MRO，从Class位置开始向上找。
 
-#### 动态加载
+### 动态加载
 * python所有的类都是type()的子类
 * type()用于实例化类的三部分信息:
     * 类名称
@@ -104,14 +110,14 @@ class Example(metaclass=SimpleMeta):
     pass # 效果和标准类型一样
 ```
 
-#### 成员变量
+### 成员变量
 - getattr() 用名称检索成员变量 访问类中不存在的成员变量时会触发`__getattr__`(d['attr'])
 - setattr() 用名称设置成员变量 设置类成员时触发`__setattr__`(d.attr = 'attr')
 - delattr() 用名称删除成员变量 删除类成员时触发`__delattr__`(del d.attr)
 - `__str__` toString方法
 - `__repr__` 在解释器中单独引用对象时触发
  
-### 打包到pip
+## 打包到pip
 * 新建文件夹
 * 将package放进去(包含__init__.py)
 * 在根目录新建setup.py

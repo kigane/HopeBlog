@@ -19,7 +19,7 @@ features:
     link: https://vuepress-theme-hope.github.io/guide/markdown/
 
   - title: 读论文
-    details: 读得多了，不会写也能编。
+    details: 读得多了，不会写也能编。<br> RNN, transformer, VisionTransformer, SwinTransfromer, MAE, BERT
     link: /thesis/
 
   - title: 作业

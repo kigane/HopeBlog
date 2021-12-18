@@ -8,4 +8,6 @@ module.exports = sidebarConfig([
     'random',
     'numpy',
     'hazel',
+    'pyqt5',
+    'image_viewer',
 ])
