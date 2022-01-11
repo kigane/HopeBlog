@@ -227,6 +227,17 @@ def some_callable(str):
     - bytesPerLine()
     - sizeInBytes()
 
+用numpy的2d数组构造QImage
+- numpy数组必须是np.uint8类型
+- QImage构造时需要指定为相应类型如QImage.Format_RGB888
+
+```python
+img = np.zeros((500, 500, 3), dtype=np.uint8)
+img[..., 0] = 233
+w, h = img.shape[:2]
+image = QImage(img.data, w, h, QImage.Format_RGB888)
+```
+
 ### QPicture
 一种绘制设备，可记录和重放QPainter命令
 
