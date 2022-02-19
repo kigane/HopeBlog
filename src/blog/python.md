@@ -159,6 +159,7 @@ setup(name='MySheet',
 * conda env create -f environment.yml: 导入环境配置
 
 ## plt
+
 ### markevery--指定会在图上标记的点的位置，间距
 * markevery=3 每三个数据点标记一个(标记，不标记，不标记，标记...)
 * markevery=(30, 3) 第30个之后，每三个数据点标记一个
@@ -169,50 +170,6 @@ setup(name='MySheet',
 ### 极坐标
 * subplot_kw={'projection': 'polar'} 映射到极坐标上
 
-## pytorch
-https://pytorch.org/get-started/locally/#windows-anaconda
-
-### 可重复性
-* torch.backends.cudnn.benchmark = False 固定cuDNN在程序运行时使用的卷积算法
-* torch.backends.cudnn.deterministic = True  程序运行时设定的算法也可能不同，将其确定下来
-* torch.manual_seed(seed) 设置CPU和CUDA的RNG种子
-* torch.cuda.manual_seed_all(seed) 设置所有GPU的RNG种子
-* np.random.seed(seed) 设置NumPy的全局RNG种子
-
-### 基础
-* 函数以_结尾，说明函数会原地修改调用者
-* torch.matmul 矩阵乘法
-* torch.no_grad() 禁止gradient操作
-* tensor.detach() 将张量从求梯度时建立的计算图中去掉，需要固定参数时很有用
-* tensor.cpu() 在CPU内存中返回对象的copy，如果已经在CPU了，则什么也不做
-* tensor.item() 当Tensor只有一个元素时，返回相应的python原生对象
-* torch.mean(tensor) 可以用dim=aixNum指定要在多维数组的那个维度求mean, 用keepdim=True可以让结果以指定的dim消失，但其他dim保留的形式显示。
-* tensor.std()
-* tensor.squeeze(dim) 去除指定的只有一个元素的维度
-* tensor.unsqueeze(dim) 添加一个只有一个元素的维度
-* dim=x，x为tensor.shape的第x+1个元素
-* tensor.transpose(dim1, dim2) 转置两个指定维度
-* torch.cat([x, y, z], dim=1) 将张量x,y,z在dim=1轴上合并
-* 模型的保存加载
-    * torch.save(model.state_dict(), PATH)
-    * model = Model(*args, **kargs)
-    * model.load_state_dict(torch.load(PATH))
-    * model.eval()
-* dataloader
-    * drop_last=True 如果batch_size不能被样本数整除，则丢弃最后一个不完整的batch。
-    * pin_memory=True the data loader will copy Tensors into CUDA pinned memory(CUDA的固定内存，可直接用物理地址访问，速度快) before returning them. 
-
-- 广播机制
-    - 每个张量必须至少有1维
-    - 维数遍历是从最后一维开始的，可广播的条件是，两个张量相应的维度
-        - 相等
-        - 其中一个是1
-        - 其中一个不存在
-    - 其中
-        - 相等，就是正常情况
-        - 其中一个不存在时，就加一维，令其成为1
-        - 其中一个为1，会将其复制扩张到另一个张量的大小
-- torch.normal(mean, std, size, *, out=None) → Tensor 生成正态分布的随机数组成的tensor
 
 ## tqdm
 用在被遍历的可迭代对象上，自动产生进度条。

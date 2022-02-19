@@ -10,4 +10,6 @@ module.exports = sidebarConfig([
     'hazel',
     'pyqt5',
     'image_viewer',
+    'japanese',
+    'blender',
 ])

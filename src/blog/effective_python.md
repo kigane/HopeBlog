@@ -1,5 +1,4 @@
 ---
-icon: page
 title: Effective Python
 author: Leonhardt
 category: Python

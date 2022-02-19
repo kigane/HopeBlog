@@ -1,5 +1,4 @@
 ---
-icon: page
 title: PyQt5 Image Viewer示例
 author: Leonhardt
 category: Python

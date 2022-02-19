@@ -108,6 +108,13 @@ sudo dmesg # 输出OS的启动日志
 
 ## 工具
 
+### strace
+strace 的作用就是跟踪程序在运行时所做的每个系统调用，然后将跟踪结果显示在屏幕上供你查看。
+
+* -f 跟踪所有 fork 的子进程
+* -t 报告每次调用的时间，
+* -e trace=open,close,read,write 只跟踪对这些系统调用的调用，并忽略所有其他调用
+
 ### tmux
 `sudo apt-get install tmux`
 

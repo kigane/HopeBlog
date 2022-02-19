@@ -1,5 +1,4 @@
 ---
-icon: page
 title: PyQt5的Model/View组件
 author: Leonhardt
 category: Python

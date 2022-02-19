@@ -1,3 +1,7 @@
 const { sidebarConfig } = require("vuepress-theme-hope");
 
-module.exports = sidebarConfig([""])
+module.exports = sidebarConfig([
+    "",
+    "strategy",
+    "observer",
+])

@@ -1,5 +1,4 @@
 ---
-icon: page
 title: PyQt5记录
 author: Leonhardt
 category: Python
