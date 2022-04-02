@@ -4,17 +4,6 @@ category: Python
 sidebarDepth: 1
 ---
 
-## 内置方法
-* `any(lst)`: lst中任意元素为True则返回True。即列表所有元素取or。
-* `all(lst)`: lst中所有元素为True才返回True。即列表所有元素取and。
-
-## 枚举
-- from enum import Enum, IntEnum, Flag, IntFlag, unique, auto
-- Flag 可创建可与位运算符搭配使用，又不会失去 Flag 成员资格的枚举常量的基类。
-- @unique装饰器，可确保成员值唯一
-- auto() 如果值不重要，可用auto生成
-
-
 ## import
 ### module
 * dir(): 无参数，查看全局命名空间的变量
@@ -29,29 +18,23 @@ sidebarDepth: 1
 * 需要在`__init__.py`中引入子模块，否则import package时空有命名空间，而无内容
 
 ### 模块查找顺序
-* sys.module
-* python标准库
+* 当前工作目录(cwd)
+* python标准库, PYTHONPATH环境变量指定位置
 * sys.path
 
-### 相对导入
-* `.`，当前目录, `..`上一级目录, `...`上上一级目录。
+::: tip 提示
+通过os.environ字典可以查看当前环境变量
+:::
 
-### importlib 模块
-* `import_module('module_name', package=__name__)` 返回值即模块
-* package用于考虑相对导入
+### 只导入一次
+导入模块时，如果模块中有可执行代码，则会执行。(`if __name__ == '__main__'`就是用于防止意外执行不希望执行的代码)。  
+重复导入相同模块，什么也不会发生。
 
 ## 解包(自动)
 * 等号右边的序列可以直接解包为单个元素，只要在左边分配同样数量的变量。
 * 数量必须相同，否则会报错
 * 可以部分解包，即在等号左边某个变量前加`*`号，则其会接受所有为未分配的值，并形成一个数组。(序列元素数量必须多于分配的变量数)。例如 `a, *b, c = [1, 2, 3, 4, 5]`，则有`b=[2,3,4]`
 
-## 压缩(zip)
-* `zip(range(3), reverse(range(5))) -> [(0, 4), (1, 3), (2, 2)]`
-* 创建字典时很有用: dict(zip(keys, values))
-
-## itertools.chain
-* itertools.chain(range(3), range(4), range(5))
-* 作用是将三个生成器(range())合并成一个新的，生成`[0,1,2,0,1,2,3,0,1,2,3,4]`
 
 ## 函数
 ### 参数
@@ -69,7 +52,7 @@ sidebarDepth: 1
 * `def prepend_rows(row:list, prefix:str) -> list:`
 * 这些部分属于注解而非表达式，所以内容是无限制的。
 
-## lambda
+### lambda
 * `f = lambda x: x*x`
 * 语法: `lambda params:body`, `lambda: body`
 * body必须是返回一个值的单个表达式
@@ -158,18 +141,6 @@ setup(name='MySheet',
 * conda env export > environment.yml: 导出环境配置
 * conda env create -f environment.yml: 导入环境配置
 
-## plt
-
-### markevery--指定会在图上标记的点的位置，间距
-* markevery=3 每三个数据点标记一个(标记，不标记，不标记，标记...)
-* markevery=(30, 3) 第30个之后，每三个数据点标记一个
-* `markevery=[1,2,3,4]` 手动给出需要标记的点
-* markevery=slice(30, 90, 3) 在给定的区间(30, 90)内，每三个数据点标记一个
-* 整型是以数据顺序为准，若是浮点型则以坐标轴长度为准。
-
-### 极坐标
-* subplot_kw={'projection': 'polar'} 映射到极坐标上
-
 
 ## tqdm
 用在被遍历的可迭代对象上，自动产生进度条。
@@ -177,6 +148,6 @@ setup(name='MySheet',
 from tqdm import tqdm
 from tqdm.notebook import tqdm_notebook
 import time
-for i in tqdm(range(20), desc='Process Bar'):
+for i in tqdm(range(20), desc='Process Bar', postfix="Postfix loss=xx"):
     time.sleep(0.5)
 ```

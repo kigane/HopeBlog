@@ -10,10 +10,9 @@ module.exports = navbarConfig([
         items: [
             { text: 'Algorithm', link: 'algorithm/' },
             { text: 'Computer Science', link: 'cs/' },
-            { text: 'Computer Vision', link: 'cv/' },
             { text: 'C/C++', link: 'cpp/' },
-            { text: 'OpenGL', link: 'opengl/' },
             { text: 'JavaScript', link: 'js/' },
+            { text: 'Python', link: 'python/' },
         ]
     },
     { text: 'Thesis', link: '/thesis/', icon: "article" },

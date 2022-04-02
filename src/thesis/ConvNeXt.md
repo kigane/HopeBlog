@@ -18,7 +18,7 @@ time: 2022-01-17
 
 ## 主要内容
 关键问题：Transformer的设计决策如何影响ConvNet的表现。  
-准备：用ViT使用的训练技巧来训练RedNet50(比原始的ResNet50表现更好)，作为baseline。  
+准备：用ViT使用的训练技巧来训练ResNet50(比原始的ResNet50表现更好)，作为baseline。  
 训练技巧：确定后保持不变
 - 300epoch
 - AdamW Optimizer

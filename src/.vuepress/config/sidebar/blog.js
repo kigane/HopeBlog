@@ -4,12 +4,9 @@ module.exports = sidebarConfig([
     '',
     'katex-cheatsheet',
     'game-engine-overview',
-    'python',
     'random',
-    'numpy',
     'hazel',
-    'pyqt5',
-    'image_viewer',
     'japanese',
-    'blender',
+    'equalize_histogram',
+    'visual_computing_intro'
 ])

@@ -7,8 +7,7 @@ module.exports = sidebarConfig({
     '/note/algorithm/': require("./note/algorithm"),
     '/note/cs/': require("./note/cs"),
     '/note/cpp/': require("./note/cpp"),
-    '/note/cv/': require("./note/cv"),
+    '/note/python/': require("./note/python"),
     '/note/js/': require("./note/js"),
-    '/note/opengl/': require("./note/opengl"),
     '/': ['']
 })

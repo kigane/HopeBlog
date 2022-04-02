@@ -55,10 +55,12 @@ time: 2022-01-04
 - some_tensor.reshape(shape)
 - some_tensor.permute()
 
-## 矩阵相乘
-- torch.matmul(a, b) == `a @ b` 矩阵相乘，支持广播机制
-- torch.mm(a, b) 矩阵相乘，不支持广播机制
+## 矩阵相乘与点积
+- torch.mv(mat, vec) 矩阵乘向量，不会广播
+- torch.matmul(a, b) == `a @ b` 矩阵相乘
+- torch.mm(a, b) 矩阵相乘
 - torch.bmm(a, b) 批量相乘。(b, n, m)x(b, m, p)->(b, n, p)
+- torch.dot(x, y)
 
 ## 广播机制
 - 每个张量必须至少有1维
@@ -74,7 +76,7 @@ time: 2022-01-04
 ## squeeze/unsqueeze
 - torch.squeeze(input, dim=None, *, out=None) → Tensor
 - torch.Tensor.squeeze(dim=None)
-- squeeze将指定维度去除(维度必须大小为1，否则无事发生)
+- squeeze将指定维度去除(维度必须大小为1，否则无事发生)，如果没有指定dim，则去除所有大小为1的维度
 - unsqueeze在指定维度前添加一个新维度(大小为1)
 
 ## torch.max
@@ -94,7 +96,7 @@ ret1.item() # 23
 
 # 求指定维度上的最大值，并且指定维度会消失(维度==>值)
 # values: 记录最大值
-# indices: 记录最大值在原维度的位置
+# indices: 记录最大值在原维度的位置索引
 # keepdim=True: 会保持原维度。其行为相当于在指定维度会保留一个元素
 values, indices = torch.max(a, 2)
 assert(values.shape == (2, 3))
@@ -144,5 +146,9 @@ torch.stack((x, x, x), 1) # (2, 3, 4)
 ## linspace
 - torch.linspace(start, end, steps, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) → Tensor
 - 结果包含start，end共计steps个元素。`[start, ... , end]`
-- 一个纸条，切三刀，平均分为四块，共5个点。
 - torch.linspace(3, 10, steps=5) # tensor([  3.0000,   4.7500,   6.5000,   8.2500,  10.0000])
+
+
+## randperm
+- torch.randperm(n, *, generator=None, out=None, dtype=torch.int64, layout=torch.strided, device=None, requires_grad=False, pin_memory=False) → Tensor
+- 返回从0到n-1的一个随机排列
