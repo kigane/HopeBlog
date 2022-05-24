@@ -11,6 +11,125 @@ star: false
 time: 2022-03-28
 ---
 
+## Dataloader, Dataset和Sampler
+先简单介绍一下Dataloader, Dataset和Sampler:
+- Dataset即数据集，是实际数据存储的地方，可以简单的视为一个列表，列表中的元素为`(X, y)`
+- Sampler用于产生索引
+- Dataloader使用Sampler产生的索引逐批量的读取Dataset中的数据。通常我们就是在每个产生的小批量上进行预测，计算损失，准确率，执行梯度下降。
+
+### 数据采样
+`torch.multinomial(input, num_samples, replacement=False) → LongTensor`
+- replacement=False时，为不放回抽样。replacement=True时，为有放回抽样。
+- num_samples为需要抽样出的样本数。显然，replacement=False时，num_samples不能超过对应的输入元素个数。
+- 当input为一维时，返回值为长为num_samples的一维张量。
+- 当input为二维时，返回值为`input.shape[0]`个num_samples长的二维张量。
+- input的元素必须为float类型
+- input的值的**相对大小**就代表了其索引被抽取的概率。可以理解为其内部会自动归一化。不要求input的值或其每一行的值总和为1，但其值必须非负，非inf，和大于零。
+- 返回值为LongTensor，每个元素为抽取的样本在input相应行的索引值。
+
+### Dataloader
+`torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, sampler=None, batch_sampler=None, num_workers=0, collate_fn=None, pin_memory=False, drop_last=False)`
+- dataset, batch_size
+- shuffle为False，使用SequentialSampler，为True则使用RandomSampler
+- sampler可以自定义，但要注意此时不可有shuffle参数。
+- batch_sampler作用是将sampler产生的索引列表根据batch_size分组。
+- collate_fn作用是将一个batch的样本合并为一个张量。即`[(X1, y1), ....] ==> ([X1, ...], [y1, ...])`
+- pin_memory: //TODO
+- drop_last表示当数据集中最后一点数据凑不够一个batch时，是直接丢弃，还是就将剩下的数据算作一个batch。
+- num_workers表示使用多少线程加载数据。Windows上有bug，只能单线程。
+
+::: tip Dataloader的核心代码
+
+```python
+# 老版本
+def __next__(self):
+    if self.num_workers == 0:  
+        indices = next(self.sample_iter)  # 用Sampler确定索引
+        batch = self.collate_fn([self.dataset[i] for i in indices]) # 从Dataset获取每个数据后合并
+        if self.pin_memory:
+            batch = _utils.pin_memory.pin_memory_batch(batch)
+        return batch
+
+# 新版本 更复杂了，但基本逻辑还是一样
+def __next__(self) -> Any:
+    ...
+    data = self._next_data()
+    ...
+
+def _next_data(self):  # 位于_SingleProcessDataLoaderIter下
+    index = self._next_index()  # may raise StopIteration
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+    if self._pin_memory:
+        data = _utils.pin_memory.pin_memory(data)
+    return data
+```
+:::
+
+### Sampler
+Sampler的核心方法是`__iter__`
+- RandomSampler: shuffle为True时，replacement为False。
+    - data_source: 数据集
+    - num_samples: 指定采样的数量，默认是所有。
+    - replacement: 默认为False，使用`randperm(n)`。若为True，则表示可以重复采样，使用`randint(n)`。
+- SubsetRandomSampler: 用于划分训练集和测试集
+    - indices: 直接传入需要的索引。在迭代时顺序会被打乱`(self.indices[i] for i in torch.randperm(len(self.indices))`
+- WeightedRandomSampler: 加权采样,用于处理类别不平衡问题。
+    - weights: 权重张量。相对更大的值代表的索引更容易被选中。
+    - num_samples: 指定采样的数量
+    - replacement: 默认为False，使用`randperm(n)`。若为True，则表示可以重复采样，使用`randint(n)`。
+
+::: tip SubsetRandomSampler使用示例
+
+```python
+n_train = len(train_dataset)
+split = n_train // 3
+indices = list(range(n_train))
+random.shuffle(indices)
+train_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[split:])
+valid_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[:split])
+train_loader = DataLoader(..., sampler=train_sampler, ...)
+valid_loader = DataLoader(..., sampler=valid_sampler, ...)
+```
+:::
+
+::: tip WeightedRandomSampler使用示例
+
+```python
+# 有4类，样本数分别为
+class_counts = [10, 20, 30, 40]
+class_weights = [1/c for c in class_counts]
+sampler_weights = [] # 计算每一个样本被采样到的概率
+for w, c in zip(class_weights, class_counts):
+    sampler_weights += [w] * c
+# 归一化后，更好理解sampler_weights的每一个值，代表一个样本被采样到的概率。
+# sampler_weights = [x/sum(sampler_weights) for x in sampler_weights] 
+sampler = torch.utils.data.sampler.WeightedRandomSampler(sampler_weights, num_samples=len(sampler_weights), replacement=True)
+loader = DataLoader(..., sampler=sampler, ...)
+```
+:::
+
+BatchSampler: 将sampler产生的索引列表根据batch_size分组  
+```python
+def __iter__(self) -> Iterator[List[int]]:
+        batch = []
+        for idx in self.sampler:
+            batch.append(idx)
+            if len(batch) == self.batch_size:
+                yield batch
+                batch = []
+        if len(batch) > 0 and not self.drop_last:
+            yield batch
+```
+
+### 另一种数据集划分方法random_split
+`torch.utils.data.random_split(dataset, lengths)`
+- dataset 要划分的数据集
+- lengths 需要划分出的数据集的长度列表
+
+```python
+random_split(range(10), [3, 7])
+```
+
 ## 范数与标准化
 
 <CodeGroup>
@@ -23,7 +142,7 @@ x = torch.tensor([1.0, 2.0, 2.0], dtype=torch.float)
 F.normalize(x, dim=0) # 输出：tensor([0.3333, 0.6667, 0.6667])
 # torch.norm(input, p='fro', dim=None, keepdim=False, out=None, dtype=None)`
 # p=(int, float, inf, -inf, 'fro', 'nuc'), fro即F范数，相当于L~2~范数
-torch.norm(x) # 输出：tensor([0.3333, 0.6667, 0.6667])
+torch.norm(x) # 输出：3
 ```
 </CodeGroupItem>
 
@@ -40,7 +159,7 @@ x_normed = x / x_norm
 </CodeGroup>
 
 
-## 随机变量
+## scipy随机变量
 scipy的stats模块中整合了大量连续分布和离散分布的随机变量对象(RVs)。连续分布的RV包含以下方法
 - rvs: Random Variates
 - pdf: Probability Density Function

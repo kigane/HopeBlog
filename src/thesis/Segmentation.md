@@ -135,7 +135,6 @@ AutoEncoder的组成
 - 分割网络作为Generator
 - Discriminator来分辨一系列masks是真值还是Generator生成的值
 
-
 ## 序列模型--用于实例级别分割
 
 ### Convolutional LSTM

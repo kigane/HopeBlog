@@ -85,10 +85,7 @@ time: 2022-01-04
 
 ```python
 a = torch.arange(24).reshape((2, 3, 4))
-b = np.arange(24)
-np.random.seed(42)
-np.random.shuffle(b)
-b = torch.from_numpy(b).reshape((2, 3, 4))
+b = torch.arange(24).reshape((2, 3, 4))
 
 # 求整个张量的最大值
 ret1 = torch.max(a) # tensor(23)
@@ -152,3 +149,4 @@ torch.stack((x, x, x), 1) # (2, 3, 4)
 ## randperm
 - torch.randperm(n, *, generator=None, out=None, dtype=torch.int64, layout=torch.strided, device=None, requires_grad=False, pin_memory=False) → Tensor
 - 返回从0到n-1的一个随机排列
+

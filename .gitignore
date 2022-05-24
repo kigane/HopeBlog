@@ -1,8 +1,10 @@
 dist
 kigane.github.io
 node_modules
+.vscode
 **/*.exe
 **/*.cpp
 **/*.c
 **/*.py
+**/*.ipynb
 src/note/js/demo.html

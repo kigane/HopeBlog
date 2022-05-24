@@ -40,7 +40,8 @@ import json
 
 # 读取
 with open('config.yml', 'r') as f:
-    yobj = yaml.safe_load(f) # 使用safe_laod而非load。因为load不安全。
+    # 使用safe_laod而非load。因为load不安全。
+    yobj = yaml.safe_load(f) # yobj为python字典对象
 
 # 写入
 with open('c.yaml', 'w') as file:
@@ -49,6 +50,10 @@ with open('c.yaml', 'w') as file:
 # 转为json
 with open('c.json', 'w') as file:
     json.dump(yobj, file)
+
+# python字典<=>json字符串
+json_str = json.dumps(yobj)
+jobj = json.loads(json_str) # jobj为python字典对象
 ```
 
 ### 多YAML文档

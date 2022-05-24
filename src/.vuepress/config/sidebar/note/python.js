@@ -14,4 +14,8 @@ module.exports = sidebarConfig([
     'file_operations',
     'scraper',
     'yaml',
+    'dataclass',
+    'sqlalchemy',
+    'weight_bias', 
+    'pytorch_base', 
 ])
